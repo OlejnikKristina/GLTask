@@ -1,6 +1,4 @@
 
-#include "../include.h"
-
 int		space(char c)
 {
 	return (c == ' ' || c == '\n' ||

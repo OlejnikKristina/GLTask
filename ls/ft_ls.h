@@ -6,6 +6,7 @@
 #include <sys/types.h>	/* For opendir */
 #include <sys/stat.h>	/* For stat only */
 #include <pwd.h>		/* For getpwuid */
+#include <grp.h>		/* For getgrgid */
 #include <dirent.h>
 #include "../ft_printf/includes/ft_printf.h"
 
@@ -14,6 +15,7 @@ typedef struct stat		t_stat;
 typedef struct timespec	t_timespec;
 typedef struct s_ls		t_ls;
 typedef struct passwd	t_passwd;
+typedef struct group	t_group;
 
 typedef struct s_ls
 {

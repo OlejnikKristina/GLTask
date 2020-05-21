@@ -14,14 +14,27 @@ DIR		*open_dir()
 	return (dir);
 }
 
-char	*get_group_name(uid_t userid)
+char	*get_group_name(uid_t gid)
 {
-	return (NULL);
+	t_group		*groupid;
+
+	groupid = getgrgid(gid);
+	return (groupid->gr_name);
 }
 
-char	*get_owner_name(uid_t userid)
+char	*get_owner_name(uid_t uid)
 {
-	return (NULL);
+	t_passwd	*userid;
+	
+	userid = getpwuid(uid);
+	return (userid->pw_name);
+}
+
+void	display_info(t_ls *ls)
+{
+	ft_printf("|%11d| |%d| |%s| |%s| |%.5d| |%s|\n", \
+	ls->mode, ls->links_num, ls->owner_name,\
+	ls->group_name, ls->size, ls->name);
 }
 
 bool	get_stat(t_ls *ls)
@@ -39,10 +52,7 @@ bool	get_stat(t_ls *ls)
 	ls->group_name = get_group_name(status.st_gid);
 	ls->size = status.st_size;
 	ls->mtime = status.st_mtim;
-	ft_printf("mode : %ld\n", status.st_mode);
-	ft_printf("links: %ld\n", status.st_nlink);
-	ft_printf("size: %ld\n", status.st_size);
-	ft_printf("name: %s\n", ls->name);
+	display_info(ls);
 	return (true);
 }
 
@@ -53,10 +63,8 @@ bool	read_dear(DIR *dir)
 
 	while ((entry = readdir(dir)) != NULL)
 	{
-		ft_printf("%ld - %s [%d] %d\n",
-		entry->d_ino, entry->d_name, entry->d_type, entry->d_reclen);
 		ls.name = entry->d_name;
-		if (get_stat(&ls))
+		if (get_stat(&ls) ==  false)
 			return (false);
 	};
 	return (true);

@@ -16,7 +16,7 @@ DIR		*open_dir()
 
 void	display_info(t_ls *ls)
 {
-	ft_printf("|%11d| |%d| |%s| |%s| |%5d| |%s|\n", \
+	ft_printf("|%11s| |%d| |%s| |%s| |%5d| |%s|\n", \
 	ls->mode, ls->links_num, ls->owner_name,\
 	ls->group_name, ls->size, ls->name);
 }
@@ -30,13 +30,14 @@ bool	get_stat(t_ls *ls)
 		perror("Error in stat");
 		return (false);
 	}
-	ls->mode = status.st_mode;
+	ls->mode = type_mode_handle(status.st_mode);
 	ls->links_num = status.st_nlink;
 	ls->owner_name = get_owner_name(status.st_uid);
 	ls->group_name = get_group_name(status.st_gid);
 	ls->size = status.st_size;
 	ls->mtime = status.st_mtim;
 	display_info(ls);
+	ft_memdel((void **)&(ls->mode));
 	return (true);
 }
 

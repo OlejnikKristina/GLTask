@@ -19,7 +19,7 @@ typedef struct group	t_group;
 
 typedef struct s_ls
 {
-	mode_t		mode;			/* File type and mode */
+	char		*mode;			/* File type and mode */
 	nlink_t		links_num;		/* Number of hard links */
 	char		*owner_name;
 	char		*group_name;

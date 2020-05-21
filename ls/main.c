@@ -14,25 +14,9 @@ DIR		*open_dir()
 	return (dir);
 }
 
-char	*get_group_name(uid_t gid)
-{
-	t_group		*groupid;
-
-	groupid = getgrgid(gid);
-	return (groupid->gr_name);
-}
-
-char	*get_owner_name(uid_t uid)
-{
-	t_passwd	*userid;
-	
-	userid = getpwuid(uid);
-	return (userid->pw_name);
-}
-
 void	display_info(t_ls *ls)
 {
-	ft_printf("|%11d| |%d| |%s| |%s| |%.5d| |%s|\n", \
+	ft_printf("|%11d| |%d| |%s| |%s| |%5d| |%s|\n", \
 	ls->mode, ls->links_num, ls->owner_name,\
 	ls->group_name, ls->size, ls->name);
 }

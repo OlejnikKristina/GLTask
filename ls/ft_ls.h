@@ -29,21 +29,8 @@ typedef struct s_ls
 
 }				t_ls;
 
-
-// typedef struct s_ls
-// {
-// 	// t_stat		*stat;
-// 	// t_dirent	*entries;
-// 	// t_ls		*next;
-// 	char		*file_mode;
-// 	nlink_t		links_num;
-// 	char		*owner_name;
-// 	char		*group_name;
-// 	int			fied_num;
-// 	// off_t		st_size;
-// 	int			data;
-// 	const char	*name; /* File, dir, link name */
-
-// }				t_ls;
+char		*get_group_name(uid_t gid);
+char		*get_owner_name(uid_t uid);
+char		*type_mode_handle(mode_t mode);
 
 #endif

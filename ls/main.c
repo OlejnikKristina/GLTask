@@ -16,7 +16,7 @@ DIR		*open_dir()
 
 void	display_info(t_ls *ls)
 {
-	ft_printf("|%11s| |%d| |%s| |%s| |%5d| |%s|\n", \
+	ft_printf("%10s %d %s %s %5d %s\n", \
 	ls->mode, ls->links_num, ls->owner_name,\
 	ls->group_name, ls->size, ls->name);
 }

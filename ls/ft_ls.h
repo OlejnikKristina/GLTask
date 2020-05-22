@@ -2,7 +2,8 @@
 #ifndef FT_LS_H
 #define FT_LS_H
 
-#include <stdbool.h> 
+#include <time.h>
+#include <stdbool.h>
 #include <sys/types.h>	/* For opendir */
 #include <sys/stat.h>	/* For stat only */
 #include <pwd.h>		/* For getpwuid */
@@ -24,7 +25,8 @@ typedef struct s_ls
 	char		*owner_name;
 	char		*group_name;
 	off_t		size;			/* Total size, in bytes */
-	t_timespec	mtime;			/* last modified */
+	char		*mtime;			/* last modified */
+	// t_timespec	mtime;			/* last modified */
 	const char	*name;			/* File, dir, link name */
 
 }				t_ls;
@@ -32,5 +34,6 @@ typedef struct s_ls
 char		*get_group_name(uid_t gid);
 char		*get_owner_name(uid_t uid);
 char		*type_mode_handle(mode_t mode);
+char		*set_time(t_timespec *mtime);
 
 #endif

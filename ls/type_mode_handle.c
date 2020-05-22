@@ -31,7 +31,7 @@ char		*type_mode_handle(mode_t mode)
 {
 	char	*type_mode;
 
-	type_mode = (char *)ft_strnew(11);
+	type_mode = (char *)malloc(11);
 	ft_memset((void *)type_mode, '-', 10);
 	type_mode[10] = '\0';
 	type_mode[0] = set_type(mode);

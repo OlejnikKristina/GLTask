@@ -28,12 +28,13 @@ typedef struct s_ls
 	char		*mtime;			/* last modified */
 	const char	*name;			/* File, dir, link name */
 	char		*link_to;		/* Name of file to which link pointed */
-
+	long long	blocks_num;		/* file system blocks, used by the listed files*/
+	t_ls		*next;
 }				t_ls;
 
 char		*get_group_name(uid_t gid);
-char		*get_owner_name(uid_t uid);
+char		*get_owner_name(gid_t uid);
 char		*type_mode_handle(mode_t mode);
-char		*set_time(t_timespec *mtime);
-
+char		*link_point_to(const char *file_name);
+void		free_memory(t_ls *ls);
 #endif

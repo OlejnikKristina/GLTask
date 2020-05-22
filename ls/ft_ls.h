@@ -26,8 +26,8 @@ typedef struct s_ls
 	char		*group_name;
 	off_t		size;			/* Total size, in bytes */
 	char		*mtime;			/* last modified */
-	// t_timespec	mtime;			/* last modified */
 	const char	*name;			/* File, dir, link name */
+	char		*link_to;		/* Name of file to which link pointed */
 
 }				t_ls;
 

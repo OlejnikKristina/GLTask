@@ -4,13 +4,12 @@
 static char	set_type(mode_t mode)
 {
 	if (S_ISSOCK(mode)) return('s');
-	else if (S_ISLNK(mode) || (mode & S_IFMT) == S_IFLNK)
-		return('l');
-	else if (S_ISREG(mode)) return('-');
-	else if (S_ISDIR(mode)) return('d');
-	else if (S_ISCHR(mode)) return('c');
-	else if (S_ISBLK(mode)) return('b');
-	else if (S_ISFIFO(mode)) return('p');
+	if (S_ISLNK(mode)) return('l');
+	if (S_ISREG(mode)) return('-');
+	if (S_ISDIR(mode)) return('d');
+	if (S_ISCHR(mode)) return('c');
+	if (S_ISBLK(mode)) return('b');
+	if (S_ISFIFO(mode)) return('p');
 	return ('-');
 }
 
@@ -32,6 +31,11 @@ char		*type_mode_handle(mode_t mode)
 	char	*type_mode;
 
 	type_mode = (char *)malloc(11);
+	if (type_mode == NULL)
+	{
+		perror("malloc error");
+		exit(EXIT_FAILURE);
+	}
 	ft_memset((void *)type_mode, '-', 10);
 	type_mode[10] = '\0';
 	type_mode[0] = set_type(mode);

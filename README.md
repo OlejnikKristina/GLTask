@@ -14,6 +14,6 @@
 `cd GLTask/`<br>
 `git submodule init`<br>
 `git submodule update`<br>
-`make -C ft_printf/ re -s` <br>
+`make -C ft_printf/ -s` <br>
 `cd ls/ && make`<br>
 `./ft_ls -la`
